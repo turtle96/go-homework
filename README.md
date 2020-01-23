@@ -27,7 +27,7 @@ go test -run=xxx -bench=. ./<package_name>
 ### Examples
 
 ```
-go test ./sparse_binary
+go test ./sparse_number
 
-go test -run=xxx -bench=. ./sparse_binary
+go test -run=xxx -bench=. ./sparse_number
 ```
