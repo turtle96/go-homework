@@ -13,7 +13,7 @@ Source: https://www.dailycodingproblem.com/
 ### Template
 
 ```go
-package sparse_binary
+package sparse_number
 
 func GetSparseNumber(n int) int {
 
