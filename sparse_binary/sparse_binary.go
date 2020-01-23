@@ -1,24 +1,37 @@
 package sparse_binary
 
 import (
-	"fmt"
 	"strconv"
 )
+
+func bruteForce(input int) int {
+	binaryArr := decimalToBinary(input)
+
+	//fmt.Println("input", input, binaryArr)
+
+	sparse := isSparse(binaryArr)
+	for !sparse {
+		binaryArr = addOneToIndex(binaryArr, len(binaryArr)-1)
+		//fmt.Println(binaryArr, binaryToDecimal(binaryArr))
+		sparse = isSparse(binaryArr)
+	}
+
+	output := binaryToDecimal(binaryArr)
+	//fmt.Println("output", output)
+	return output
+}
 
 func GetSparseNumber(input int) int {
 	binaryArr := decimalToBinary(input)
 
-	fmt.Println("input", input, binaryArr)
+	//fmt.Println("input", input, binaryArr)
 
-	sparse, index := isSparse(binaryArr)
-	for !sparse {
-		binaryArr = addOneToIndex(binaryArr, index)
-		fmt.Println(binaryArr, binaryToDecimal(binaryArr))
-
-		sparse, index = isSparse(binaryArr)
+	if !isSparse(binaryArr) {
+		newNum := roundUp(len(binaryArr))
+		return binaryStrToDecimal(newNum)
 	}
 
-	return binaryToDecimal(binaryArr)
+	return input
 }
 
 func decimalToBinary(n int) []int {
@@ -36,6 +49,11 @@ func decimalToBinary(n int) []int {
 	return binaryArr
 }
 
+func binaryStrToDecimal(binary string) int {
+	i, _ := strconv.ParseInt(binary, 2, 64)
+	return int(i)
+}
+
 func binaryToDecimal(binary []int) int {
 	str := ""
 	for _, b := range binary {
@@ -46,18 +64,17 @@ func binaryToDecimal(binary []int) int {
 		}
 	}
 
-	i, _ := strconv.ParseInt(str, 2, 64)
-	return int(i)
+	return binaryStrToDecimal(str)
 }
 
-func isSparse(binary []int) (bool, int) {
+func isSparse(binary []int) bool {
 	for i := len(binary) - 1; i > 0; i-- {
 		if binary[i] == 1 && binary[i-1] == 1 {
-			return false, i
+			return false
 		}
 	}
 
-	return true, -1
+	return true
 }
 
 func addOneToIndex(binary []int, i int) []int {
@@ -73,4 +90,13 @@ func addOneToIndex(binary []int, i int) []int {
 	}
 
 	return binary
+}
+
+func roundUp(len int) string {
+	str := "1"
+	for i := 0; i < len; i++ {
+		str = str + "0"
+	}
+
+	return str
 }
