@@ -1,4 +1,4 @@
-package sparse_binary
+package sparse_number
 
 import (
 	"testing"
