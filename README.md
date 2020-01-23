@@ -1,10 +1,10 @@
-# homework
-
-For all your self-assigned homework needs.
-
 <p align="center"> 
   <img src="https://media.giphy.com/media/M7EQSsEXkGRvq/giphy.gif" width="400"/>
 </p>
+
+# homework
+
+For all your self-assigned homework needs.
 
 Inspired by [plutov/practice-go](https://github.com/plutov/practice-go).
 
